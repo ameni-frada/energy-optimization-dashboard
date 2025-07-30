@@ -1,14 +1,17 @@
 import joblib
 import gzip
-import streamlit as st
+import requests
+import io
 
-@st.cache_resource
-def load_model():
-    with gzip.open("random_forest_model_without_proxies.pkl.gz", "rb") as f:
-        model = joblib.load(f)
-    return model
+# Replace this with your actual direct download URL
+url = "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
 
-model = load_model()
+response = requests.get(url)
+compressed_model = io.BytesIO(response.content)
+
+with gzip.open(compressed_model, 'rb') as f:
+    model = joblib.load(f)
+
 
 st.title("🔋 Energy Prediction & EMS Dashboard")
 st.markdown("This dashboard predicts energy consumption and applies a basic EMS strategy.")
