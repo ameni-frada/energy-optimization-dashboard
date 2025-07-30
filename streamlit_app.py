@@ -4,7 +4,7 @@ import requests
 import io
 
 # Replace this with your actual direct download URL
-url = "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
+url = "https://drive.google.com/file/d/1oISJqpZMRAW-FF-E5yHDYKbMkTOtB2TL/view?usp=sharing"
 
 response = requests.get(url)
 compressed_model = io.BytesIO(response.content)
