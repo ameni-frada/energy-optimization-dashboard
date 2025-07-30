@@ -1,12 +1,12 @@
-import streamlit as st
-import pandas as pd
 import joblib
-import matplotlib.pyplot as plt
+import gzip
+import streamlit as st
 
-# --- Load the trained model ---
 @st.cache_resource
 def load_model():
-    return joblib.load("random_forest_model.pkl")
+    with gzip.open("random_forest_model_without_proxies.pkl.gz", "rb") as f:
+        model = joblib.load(f)
+    return model
 
 model = load_model()
 
